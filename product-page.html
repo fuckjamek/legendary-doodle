@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>产品详情 - 全球优品</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>全球优品</h1>
+    <nav>
+      <a href="index.html">首页</a>
+      <a href="about.html">关于我们</a>
+    </nav>
+  </header>
+  
+  <main>
+    <div class="product-details" id="product-container">
+      <!-- 产品详情将通过 JavaScript 动态加载 -->
+    </div>
+  </main>
+  
+  <footer>
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <div class="social-links">
+      <a href="https://www.facebook.com/yourbusiness" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/yourbusiness" target="_blank">Instagram</a>
+      <a href="https://www.pinterest.com/yourbusiness" target="_blank">Pinterest</a>
+    </div>
+
+    <p>&copy; 2023 全球优品. 保留所有权利。</p>
+  </footer>
+
+  <script>
+    // 简单的产品数据
+    const products = {
+      1: {
+        name: "日本进口面膜",
+        image: "images/japanese-face-mask.jpg",
+        description: "精选日本顶级面膜，滋润保湿，焕发肌肤活力。采用先进的保湿技术，深层滋养肌肤，让您的皮肤如丝般顺滑。",
+        price: 19.99
+      },
+      2: {
+        name: "德国厨房刀具套装",
+        image: "images/german-knife-set.jpg",
+        description: "德国工艺，锋利耐用，是您烹饪的得力助手。套装包含主厨刀、面包刀、多用途刀等，满足各种切割需求。",
+        price: 89.99
+      },
+       3: {
+        name: "澳洲天然蜂蜜",
+        image: "images/australian-honey.jpg",
+        description: "纯天然无添加，来自澳洲的健康甜蜜。采自未受污染的澳洲自然保护区，保留了蜂蜜的原始营养成分。",
+        price: 29.99
+      },
+      4: {
+        name: "法国红酒套装",
+        image: "images/french-wine-set.jpg",
+        description: "精选法国波尔多地区的优质红酒，口感醇厚，香气四溢。这套红酒包含三瓶不同年份的顶级红酒，是品酒爱好者的绝佳选择。",
+        price: 129.99
+      }
+    };
+
+    // 获取URL参数
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+
+    // 加载产品详情
+    const product = products[productId];
+    if (product) {
+      document.getElementById('product-container').innerHTML = `
+        <div class="product-details-container">
+          <img src="${product.image}" alt="${product.name}" class="product-image">
+          <div class="product-info">
+            <h2>${product.name}</h2>
+            <p>${product.description}</p>
+            <p class="price">价格: $${product.price}</p>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+              <input type="hidden" name="cmd" value="_xclick">
+              <input type="hidden" name="business" value="your-actual-paypal-email@example.com">
+              <input type="hidden" name="item_name" value="${product.name}">
+              <input type="hidden" name="amount" value="${product.price}">
+              <input type="hidden" name="currency_code" value="USD">
+              <input type="image" src="https://www.paypalobjects.com/zh_XC/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - 更安全、更简单的在线支付方式！">
+            </form>
+          </div>
+        </div>
+      `;
+    } else {
+      document.getElementById('product-container').innerHTML = '<p>产品不存在</p>';
+    }
+  </script>
+</body>
+</html>

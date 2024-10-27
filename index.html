@@ -1,0 +1,162 @@
+<!-- 这是一个基本的Shopify主题结构示例 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全球优品 - 您的跨境购物天堂</title>
+  <meta name="description" content="全球优品为您带来精选的国际商品，享受便捷的跨境购物体验。提供日本面膜、德国厨具、澳洲蜂蜜等优质产品。">
+  <meta name="keywords" content="跨境购物,国际商品,日本面膜,德国厨具,澳洲蜂蜜">
+  <link rel="stylesheet" href="style.css">
+  <!-- 在<head>标签内添加 -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>全球优品</h1>
+    <p>您的跨境购物天堂</p>
+    <nav>
+      <a href="index.html">首页</a>
+      <a href="about.html">关于我们</a>
+      <a href="contact.html">联系我们</a>
+      <select id="language-select" onchange="changeLanguage()">
+        <option value="zh">中文</option>
+        <option value="en">English</option>
+      </select>
+    </nav>
+  </header>
+  
+  <main>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="搜索产品...">
+      <button onclick="searchProducts()">搜索</button>
+    </div>
+    <div class="product-list">
+      <div class="product-item">
+        <h2>日本进口面膜</h2>
+        <img src="images/japanese-face-mask.jpg" alt="日本进口面膜" class="lazy-load" data-src="images/japanese-face-mask.jpg">
+        <p>来自日本的尖端护肤科技，这款面膜富含珍贵的天然成分，能深层滋润肌肤，提升肤质。每次使用后，您都能感受到肌肤的柔软和光泽。</p>
+        <p>价格: $19.99</p>
+        <a href="product-page.html?id=1" class="btn">查看详情</a>
+      </div>
+      <div class="product-item">
+        <h2>德国厨房刀具套装</h2>
+        <img src="images/german-knife-set.jpg" alt="德国厨房刀具套装">
+        <p>德国工艺，锋利耐用，是您烹饪的得力助手。</p>
+        <p>价格: $89.99</p>
+        <a href="product-page.html?id=2">查看详情</a>
+      </div>
+      <div class="product-item">
+        <h2>澳洲天然蜂蜜</h2>
+        <img src="images/australian-honey.jpg" alt="澳洲天然蜂蜜">
+        <p>纯天然无添加，来自澳洲的健康甜蜜。</p>
+        <p>价格: $29.99</p>
+        <a href="product-page.html?id=3">查看详情</a>
+      </div>
+      <div class="product-item">
+        <h2>法国红酒套装</h2>
+        <img src="images/french-wine-set.jpg" alt="法国红酒套装">
+        <p>精选法国波尔多地区的优质红酒，口感醇厚，香气四溢。</p>
+        <p>价格: $129.99</p>
+        <a href="product-page.html?id=4">查看详情</a>
+      </div>
+    </div>
+  </main>
+  
+  <!-- 在 </main> 标签前添加以下脚本 -->
+  <script>
+    function searchProducts() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+      const products = document.getElementsByClassName('product-item');
+      
+      for (let product of products) {
+        const productName = product.getElementsByTagName('h2')[0].innerText.toLowerCase();
+        if (productName.includes(searchTerm)) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      }
+    }
+  </script>
+  
+  <footer>
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <div class="social-links">
+      <a href="https://www.facebook.com/yourbusiness" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/yourbusiness" target="_blank">Instagram</a>
+      <a href="https://www.pinterest.com/yourbusiness" target="_blank">Pinterest</a>
+    </div>
+
+    <p>&copy; 2023 我的跨境独立站. 保留所有权利。</p>
+
+    <!-- 在页脚添加 -->
+    <div class="trust-badges">
+      <img src="images/secure-payment.png" alt="安全支付" title="安全支付保障">
+      <img src="images/money-back.png" alt="退款保证" title="30天退款保证">
+      <img src="images/free-shipping.png" alt="免费配送" title="订单满$50免费配送">
+    </div>
+  </footer>
+  
+  <!-- 在<body>标签末尾添加 -->
+  <div id="back-to-top" title="返回顶部">↑</div>
+
+  <script>
+  // 返回顶部按钮
+  window.onscroll = function() {
+    var backToTop = document.getElementById("back-to-top");
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      backToTop.style.display = "block";
+    } else {
+      backToTop.style.display = "none";
+    }
+  };
+
+  document.getElementById("back-to-top").onclick = function() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
+
+  // 图片懒加载
+  document.addEventListener("DOMContentLoaded", function() {
+    var lazyImages = [].slice.call(document.querySelectorAll("img.lazy-load"));
+
+    if ("IntersectionObserver" in window) {
+      let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            let lazyImage = entry.target;
+            lazyImage.src = lazyImage.dataset.src;
+            lazyImage.classList.add("loaded");
+            lazyImageObserver.unobserve(lazyImage);
+          }
+        });
+      });
+
+      lazyImages.forEach(function(lazyImage) {
+        lazyImageObserver.observe(lazyImage);
+      });
+    }
+  });
+  </script>
+
+  <script>
+  function changeLanguage() {
+    var lang = document.getElementById("language-select").value;
+    if (lang === "en") {
+      window.location.href = "index-en.html";
+    } else {
+      window.location.href = "index.html";
+    }
+  }
+  </script>
+</body>
+</html>
